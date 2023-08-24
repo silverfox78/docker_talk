@@ -1,0 +1,25 @@
+version: "3.9"
+name: bd-mysql
+
+services:
+  bd-mysql:
+    container_name: bd-mysql
+    image: mysql:8.0
+    restart: always
+    env_file: 
+      mysql.env
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - /c/scripts:/docker-entrypoint-initdb.d/
+    ports:
+      - "3306:3306"
+    networks:
+      - network-public
+
+networks:
+  network-public:
+    driver: bridge
+
+volumes:
+  mysql-data:
+    driver: local
