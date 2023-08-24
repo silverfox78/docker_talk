@@ -6,6 +6,14 @@
 version: "3.9"
 name: bd-mysql
 
+networks:
+  network-public:
+    driver: bridge
+
+volumes:
+  mysql-data:
+    driver: local
+
 services:
   bd-mysql:
     container_name: bd-mysql
@@ -20,14 +28,6 @@ services:
       - "3306:3306"
     networks:
       - network-public
-
-networks:
-  network-public:
-    driver: bridge
-
-volumes:
-  mysql-data:
-    driver: local
 ```
 
 ## Levantamos el contenedor
